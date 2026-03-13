@@ -1,10 +1,9 @@
-Enzyme
+Enzyme Modern
 =======
 
-[![Join the chat at https://gitter.im/enzymejs/enzyme](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/enzymejs/enzyme?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![npm Version](https://img.shields.io/npm/v/enzyme-modern.svg)](https://www.npmjs.com/package/enzyme-modern) [![License](https://img.shields.io/npm/l/enzyme-modern.svg)](https://github.com/sabaoongfx/enzyme/blob/master/LICENSE.md)
 
-[![npm Version](https://img.shields.io/npm/v/enzyme.svg)](https://www.npmjs.com/package/enzyme) [![License](https://img.shields.io/npm/l/enzyme.svg)](https://github.com/enzymejs/enzyme/blob/master/LICENSE.md) [![Build Status](https://travis-ci.org/enzymejs/enzyme.svg)](https://travis-ci.org/enzymejs/enzyme) [![Coverage Status](https://codecov.io/gh/enzymejs/enzyme/branch/master/graph/badge.svg)](https://codecov.io/gh/enzymejs/enzyme/branch/master)
-
+Modernized fork of [Enzyme](https://github.com/enzymejs/enzyme) — the original project was abandoned and is no longer maintained.
 
 Enzyme is a JavaScript Testing utility for React that makes it easier to test your React Components' output.
 You can also manipulate, traverse, and in some ways simulate runtime given the output.
@@ -12,113 +11,46 @@ You can also manipulate, traverse, and in some ways simulate runtime given the o
 Enzyme's API is meant to be intuitive and flexible by mimicking jQuery's API for DOM manipulation
 and traversal.
 
-Upgrading from Enzyme 2.x or React < 16
-===========
+## Why this fork?
 
-Are you here to check whether or not Enzyme is compatible with React 16? Are you currently using
-Enzyme 2.x? Great! Check out our [migration guide](/docs/guides/migration-from-2-to-3.md) for help
-moving on to Enzyme v3 where React 16 is supported.
+The original `enzyme` package has been abandoned and no longer receives updates. `enzyme-modern` is an actively maintained fork that:
 
-### [Installation](/docs/installation/README.md)
+- Publishes under the `enzyme-modern` package name
+- Keeps dependencies up to date
+- Aims to add support for React 17, 18, and 19
 
-To get started with enzyme, you can simply install it via npm. You will need to install enzyme
-along with an Adapter corresponding to the version of react (or other UI Component library) you
-are using. For instance, if you are using enzyme with React 16, you can run:
+## Installation
 
 ```bash
-npm i --save-dev enzyme enzyme-adapter-react-16
+npm i --save-dev enzyme-modern enzyme-modern-adapter-react-16
 ```
 
 Each adapter may have additional peer dependencies which you will need to install as well. For instance,
-`enzyme-adapter-react-16` has peer dependencies on `react` and `react-dom`.
+`enzyme-modern-adapter-react-16` has peer dependencies on `react` and `react-dom`.
 
-At the moment, Enzyme has adapters that provide compatibility with `React 16.x`, `React 15.x`,
-`React 0.14.x` and `React 0.13.x`.
+### Adapters
 
-The following adapters are officially provided by enzyme, and have the following compatibility with
-React:
-
-| Enzyme Adapter Package | React semver compatibility |
+| Adapter Package | React compatibility |
 | --- | --- |
-| `enzyme-adapter-react-16` | `^16.4.0-0` |
-| `enzyme-adapter-react-16.3` | `~16.3.0-0` |
-| `enzyme-adapter-react-16.2` | `~16.2` |
-| `enzyme-adapter-react-16.1` | <code>~16.0.0-0 &#124;&#124; ~16.1</code> |
-| `enzyme-adapter-react-15` | `^15.5.0` |
-| `enzyme-adapter-react-15.4` | `15.0.0-0 - 15.4.x` |
-| `enzyme-adapter-react-14` | `^0.14.0` |
-| `enzyme-adapter-react-13` | `^0.13.0` |
+| `enzyme-modern-adapter-react-16` | `^16.4.0-0` |
 
-Finally, you need to configure enzyme to use the adapter you want it to use. To do this, you can use
-the top level `configure(...)` API.
+Configure enzyme to use your adapter:
 
 ```js
-import Enzyme from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import Enzyme from 'enzyme-modern';
+import Adapter from 'enzyme-modern-adapter-react-16';
 
 Enzyme.configure({ adapter: new Adapter() });
 ```
 
-3rd Party Adapters
-=============
+## Basic Usage
 
-It is possible for the community to create additional (non-official) adapters that will make enzyme
-work with other libraries. If you have made one and it's not included in the list below, feel free
-to make a PR to this README and add a link to it! The known 3rd party adapters are:
-
-| Adapter Package | For Library | Status |
-| --- | --- | --- |
-| [`enzyme-adapter-preact-pure`](https://github.com/preactjs/enzyme-adapter-preact-pure) | [`preact`](https://github.com/developit/preact) | (stable) |
-|[`enzyme-adapter-inferno`](https://github.com/bbc/enzyme-adapter-inferno)|[`inferno`](https://github.com/infernojs/inferno)|(work in progress)|
-
-Running Enzyme Tests
-===========
-
-Enzyme is unopinionated regarding which test runner or assertion library you use, and should be
-compatible with all major test runners and assertion libraries out there. The documentation and
-examples for enzyme use [Mocha](https://mochajs.org) and [Chai](https://chaijs.com), but you
-should be able to extrapolate to your framework of choice.
-
-If you are interested in using enzyme with custom assertions and convenience functions for
-testing your React components, you can consider using:
-
-* [`chai-enzyme`](https://github.com/producthunt/chai-enzyme) with Mocha/Chai.
-* [`jasmine-enzyme`](https://github.com/FormidableLabs/enzyme-matchers/tree/master/packages/jasmine-enzyme) with Jasmine.
-* [`jest-enzyme`](https://github.com/FormidableLabs/enzyme-matchers/tree/master/packages/jest-enzyme) with Jest.
-* [`should-enzyme`](https://github.com/rkotze/should-enzyme) for should.js.
-* [`expect-enzyme`](https://github.com/PsychoLlama/expect-enzyme) for expect.
-
-
-[Using Enzyme with Mocha](/docs/guides/mocha.md)
-
-[Using Enzyme with Karma](/docs/guides/karma.md)
-
-[Using Enzyme with Browserify](/docs/guides/browserify.md)
-
-[Using Enzyme with SystemJS](/docs/guides/systemjs.md)
-
-[Using Enzyme with Webpack](/docs/guides/webpack.md)
-
-[Using Enzyme with JSDOM](/docs/guides/jsdom.md)
-
-[Using Enzyme with React Native](/docs/guides/react-native.md)
-
-[Using Enzyme with Jest](/docs/guides/jest.md)
-
-[Using Enzyme with Lab](/docs/guides/lab.md)
-
-[Using Enzyme with Tape and AVA](/docs/guides/tape-ava.md)
-
-Basic Usage
-===========
-
-## [Shallow Rendering](/docs/api/shallow.md)
+### [Shallow Rendering](/docs/api/shallow.md)
 
 ```javascript
 import React from 'react';
 import { expect } from 'chai';
-import { shallow } from 'enzyme';
-import sinon from 'sinon';
+import { shallow } from 'enzyme-modern';
 
 import MyComponent from './MyComponent';
 import Foo from './Foo';
@@ -154,15 +86,13 @@ describe('<MyComponent />', () => {
 
 Read the full [API Documentation](/docs/api/shallow.md)
 
-
-
-## [Full DOM Rendering](/docs/api/mount.md)
+### [Full DOM Rendering](/docs/api/mount.md)
 
 ```javascript
 import React from 'react';
 import sinon from 'sinon';
 import { expect } from 'chai';
-import { mount } from 'enzyme';
+import { mount } from 'enzyme-modern';
 
 import Foo from './Foo';
 
@@ -194,13 +124,12 @@ describe('<Foo />', () => {
 
 Read the full [API Documentation](/docs/api/mount.md)
 
-
-## [Static Rendered Markup](/docs/api/render.md)
+### [Static Rendered Markup](/docs/api/render.md)
 
 ```javascript
 import React from 'react';
 import { expect } from 'chai';
-import { render } from 'enzyme';
+import { render } from 'enzyme-modern';
 
 import Foo from './Foo';
 
@@ -219,7 +148,7 @@ describe('<Foo />', () => {
 
 Read the full [API Documentation](/docs/api/render.md)
 
-### React Hooks support
+## React Hooks support
 
 Enzyme supports [react hooks](https://reactjs.org/docs/hooks-intro.html) with some limitations in [`.shallow()`](https://enzymejs.github.io/enzyme/docs/api/shallow.html) due to upstream issues in React's shallow renderer:
 
@@ -227,41 +156,23 @@ Enzyme supports [react hooks](https://reactjs.org/docs/hooks-intro.html) with so
 
 * `useCallback()` doesn't memoize callback in React shallow renderer. [Related issue](https://github.com/facebook/react/issues/15774)
 
-#### [`ReactTestUtils.act()`](https://reactjs.org/docs/test-utils.html#act) wrap
+### [`ReactTestUtils.act()`](https://reactjs.org/docs/test-utils.html#act) wrap
 
 If you're using React 16.8+ and `.mount()`, Enzyme will wrap apis including [`.simulate()`](https://enzymejs.github.io/enzyme/docs/api/ReactWrapper/simulate.html), [`.setProps()`](https://enzymejs.github.io/enzyme/docs/api/ReactWrapper/setProps.html), [`.setContext()`](https://enzymejs.github.io/enzyme/docs/api/ReactWrapper/setContext.html), [`.invoke()`](https://enzymejs.github.io/enzyme/docs/api/ReactWrapper/invoke.html) with [`ReactTestUtils.act()`](https://reactjs.org/docs/test-utils.html#act) so you don't need to manually wrap it.
 
-A common pattern to trigger handlers with `.act()` and assert is:
+## Packages
 
-```javascript
-const wrapper = mount(<SomeComponent />);
-act(() => wrapper.prop('handler')());
-wrapper.update();
-expect(/* ... */);
-```
+| Package | npm |
+|---------|-----|
+| `enzyme-modern` | [![npm](https://img.shields.io/npm/v/enzyme-modern.svg)](https://www.npmjs.com/package/enzyme-modern) |
+| `enzyme-modern-shallow-equal` | [![npm](https://img.shields.io/npm/v/enzyme-modern-shallow-equal.svg)](https://www.npmjs.com/package/enzyme-modern-shallow-equal) |
+| `enzyme-modern-adapter-utils` | [![npm](https://img.shields.io/npm/v/enzyme-modern-adapter-utils.svg)](https://www.npmjs.com/package/enzyme-modern-adapter-utils) |
+| `enzyme-modern-adapter-react-16` | [![npm](https://img.shields.io/npm/v/enzyme-modern-adapter-react-16.svg)](https://www.npmjs.com/package/enzyme-modern-adapter-react-16) |
 
-We cannot wrap the result of `.prop()` (or `.props()`) with `.act()` in Enzyme internally since it will break the equality of the returned value.
-However, you could use `.invoke()` to simplify the code:
-
-```javascript
-const wrapper = mount(<SomeComponent />);
-wrapper.invoke('handler')();
-expect(/* ... */);
-```
-
-### Future
-
-[Enzyme Future](/docs/future.md)
-
-
-### Contributing
+## Contributing
 
 See the [Contributors Guide](/CONTRIBUTING.md)
 
-### In the wild
-
-Organizations and projects using `enzyme` can list themselves [here](INTHEWILD.md).
-
-### License
+## License
 
 [MIT](/LICENSE.md)
